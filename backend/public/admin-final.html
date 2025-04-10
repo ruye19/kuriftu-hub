@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- components-article.html  Tue, 07 Jan 2020 03:36:27 GMT -->
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+<title>Course page</title>
+  
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: rgb(118, 185, 16);;
+            --primary-dark: #2d391c;
+            --primary-light: #d5f5e3;
+            --secondary: #2f724b;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+            --light-gray: #ecf0f1;
+            --white: #ffffff;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --success: #2ecc71;
+            --info: #3498db;
+            --border-radius: 4px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 20%;
+            background: var(--white);
+            box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.05);
+            /* transition: var(--transition); */         
+            height: 100vh;
+            z-index: 100;
+            padding: 3%;
+        }
+
+        .sidebar-brand {
+            padding: 5%;
+            /* margin-top: 4%; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--light-gray);
+            color: rgb(118, 185, 16);
+           
+            font-weight: 700;
+        }
+
+        .sidebar-menu {
+            padding: 20px 0;
+          
+        }
+
+        .menu-header {
+            padding: 10px 20px;
+        
+            text-transform: uppercase;
+            color: var(--gray);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* .section-header{
+            !important: margin: 0;
+           
+
+        } */
+
+        .menu-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            color: var(--secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+
+        .menu-item i {
+            /* margin-right: ; */
+            width: 20px;
+            text-align: center;
+        }
+
+        .menu-item:hover {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border-left: 3px solid var(--primary);
+        }
+
+        .menu-item.active {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border-left: 3px solid var(--primary);
+            font-weight: 600;
+        }
+
+        .dropdown-menu {
+            padding-left: 20px;
+            display: none;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            color: var(--secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .dropdown-item i {
+            /* margin-right: 10px; */
+            width: 20px;
+            text-align: center;
+        }
+
+        .dropdown-item:hover {
+            color: var(--primary-dark);
+        }
+
+        
+
+        /* .section-header {
+            margin-bottom: 30px;
+            margin-top: 5%;
+        } */
+
+        .section-title {
+            font-size: 1.75rem;
+            color: darkolivegreen;
+            margin-bottom: 10px;
+          
+        }
+
+        .section-lead {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        .breadcrumb {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-item {
+            color: var(--gray);
+        }
+
+        .breadcrumb-item.active {
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .breadcrumb-item:not(:last-child)::after {
+            content: '/';
+            margin: 0 8px;
+            color: var(--gray);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+            border: none;
+            overflow: hidden;
+            
+        }
+
+        .card-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+        }
+
+        .card-header h4 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: var(--dark);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        /* Author Box */
+        .author-box {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        .author-box-left {
+            text-align: center;
+            margin-right: 20px;
+        }
+
+        .author-box-picture {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-light);
+            margin-bottom: 15px;
+        }
+
+        .author-box-details {
+            flex: 1;
+        }
+
+        .author-box-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .author-box-name a {
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .author-box-job {
+            color: var(--primary-dark);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .author-box-description {
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-primary {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline-primary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .btn-social-icon {
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .btn-facebook {
+            background: #3b5998;
+            color: white;
+        }
+
+        .btn-twitter {
+            background: #1da1f2;
+            color: white;
+        }
+
+        .btn-github {
+            background: #333;
+            color: white;
+        }
+
+        .btn-instagram {
+            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+            color: white;
+        }
+
+        /* User Items */
+        .user-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .user-item:hover {
+            background: var(--light-gray);
+        }
+
+        .user-item img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .user-details {
+            flex: 1;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .text-job {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .user-cta {
+            margin-left: 15px;
+        }
+
+        /* Comments */
+        .media {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .media:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .media img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .media-body {
+            flex: 1;
+            margin-left: 15px;
+        }
+
+        .media-title {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .text-time {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+
+        .media-description {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .media-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-right: 10px;
+        }
+
+        .media-links a:hover {
+            color: var(--primary-dark);
+        }
+
+        .bullet {
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background: var(--gray);
+            border-radius: 50%;
+            margin: 0 10px;
+        }
+
+        /* Progress */
+        .media-progressbar {
+            flex: 0 0 120px;
+            margin: 0 15px;
+        }
+
+        .progress-text {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 5px;
+        }
+
+        .progress {
+            height: 6px;
+            background: var(--light-gray);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        /* User Details */
+        .user-details {
+            display: flex;
+            align-items: center;
+        }
+
+        .media-items {
+            display: flex;
+        }
+
+        .media-item {
+            text-align: center;
+            padding: 0 15px;
+        }
+
+        .media-value {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+
+        .media-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* Avatar Items */
+        .avatar-item {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto;
+        }
+
+        .avatar-item img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .avatar-badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+        }
+
+        /* Profile Widget */
+        .profile-widget {
+            text-align: center;
+        }
+
+        .profile-widget-picture {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-light);
+            margin: -55px auto 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-widget-items {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-widget-item {
+            padding: 0 20px;
+        }
+
+        .profile-widget-item-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .profile-widget-item-value {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 80px;
+                overflow: hidden;
+            }
+            
+            .sidebar-brand span, 
+            .menu-item span,
+            .dropdown-menu {
+                display: none;
+            }
+/*             
+            .main-content {
+                margin-left: 80px;
+            } */
+            
+            .menu-item {
+                justify-content: center;
+                padding: 15px 0;
+            }
+            
+            .menu-item i {
+                margin-right: 0;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .author-box {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .author-box-left {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .profile-widget-items {
+                flex-direction: column;
+            }
+            
+            .profile-widget-item {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+
+
+<!-- General CSS Files -->
+<link rel="stylesheet" href="assets/modules/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/modules/fontawesome/css/all.min.css">
+
+<!-- CSS Libraries -->
+
+<!-- Template CSS -->
+<link rel="stylesheet" href="assets/css/style.min.css">
+<link rel="stylesheet" href="assets/css/components.min.css">
+</head>
+
+<body class="layout-4">
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+</div>
+
+<div id="app">
+    <div class="main-wrapper main-wrapper-1">
+        <div class="navbar-bg"></div>
+
+        <!-- Start app top navbar -->
+        <nav class="navbar navbar-expand-lg main-navbar">
+            <form class="form-inline mr-auto">
+                <ul class="navbar-nav mr-3">
+                    <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+                    <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
+                </ul>
+                <div class="search-element">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250">
+                    <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+                    <div class="search-backdrop"></div>
+                    <div class="search-result">
+                        <div class="search-header">Histories</div>
+                        <div class="search-item">
+                            <a href="#">How to Used HTML in Laravel</a>
+                            <a href="#" class="search-close"><i class="fas fa-times"></i></a>
+                        </div>
+                        <div class="search-item">
+                            <a href="https://themeforest.net/user/admincraft/portfolio" target="_black">Admincraft Portfolio</a>
+                            <a href="#" class="search-close"><i class="fas fa-times"></i></a>
+                        </div>
+                        <div class="search-item">
+                            <a href="#">#Kuriftu HUB</a>
+                            <a href="#" class="search-close"><i class="fas fa-times"></i></a>
+                        </div>
+                        <div class="search-header">Result</div>
+                        <div class="search-item">
+                            <a href="#">
+                                <img class="mr-3 rounded" width="30" src="assets/img/products/product-3-50.png" alt="product">
+                                oPhone 11 Pro
+                            </a>
+                        </div>
+                        <div class="search-item">
+                            <a href="#">
+                                <img class="mr-3 rounded" width="30" src="assets/img/products/product-2-50.png" alt="product">
+                                Drone Zx New Gen-3
+                            </a>
+                        </div>
+                        <div class="search-item">
+                            <a href="#">
+                                <img class="mr-3 rounded" width="30" src="assets/img/products/product-1-50.png" alt="product">
+                                Headphone JBL
+                            </a>
+                        </div>
+                        <div class="search-header">Projects</div>
+                        <div class="search-item">
+                            <a href="https://themeforest.net/item/epice-laravel-admin-template-for-hr-project-management/24466729" target="_black">
+                                <div class="search-icon bg-danger text-white mr-3"><i class="fas fa-code"></i></div>
+                                Epice Laravel - Admin Template
+                            </a>
+                        </div>
+                        <div class="search-item">
+                            <a href="https://themeforest.net/item/soccer-project-management-admin-template-ui-kit/24646866" target="_black">
+                                <div class="search-icon bg-primary text-white mr-3"><i class="fas fa-laptop"></i></div>
+                                Soccer - Admin Template
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <ul class="navbar-nav navbar-right">
+                <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
+                    <div class="dropdown-menu dropdown-list dropdown-menu-right">
+                    <div class="dropdown-header">Messages
+                        <div class="float-right">
+                            <a href="#">Mark All As Read</a>
+                        </div>
+                    </div>
+                    <div class="dropdown-list-content dropdown-list-message">
+                        <a href="#" class="dropdown-item dropdown-item-unread">
+                            <div class="dropdown-item-avatar">
+                                <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle">
+                                <div class="is-online"></div>
+                            </div>
+                            <div class="dropdown-item-desc">
+                                <b>Kusnaedi</b>
+                                <p>Hello, Bro!</p>
+                                <div class="time">10 Hours Ago</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item dropdown-item-unread">
+                            <div class="dropdown-item-avatar">
+                                <img alt="image" src="assets/img/avatar/avatar-2.png" class="rounded-circle">
+                            </div>
+                            <div class="dropdown-item-desc">
+                                <b>Dedik Sugiharto</b>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                                <div class="time">12 Hours Ago</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item dropdown-item-unread">
+                            <div class="dropdown-item-avatar">
+                                <img alt="image" src="assets/img/avatar/avatar-3.png" class="rounded-circle">
+                                <div class="is-online"></div>
+                            </div>
+                            <div class="dropdown-item-desc">
+                                <b>Agung Ardiansyah</b>
+                                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                <div class="time">12 Hours Ago</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <div class="dropdown-item-avatar">
+                                <img alt="image" src="assets/img/avatar/avatar-4.png" class="rounded-circle">
+                            </div>
+                            <div class="dropdown-item-desc">
+                                <b>Ardian Rahardiansyah</b>
+                                <p>Duis aute irure dolor in reprehenderit in voluptate velit ess</p>
+                                <div class="time">16 Hours Ago</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <div class="dropdown-item-avatar">
+                                <img alt="image" src="assets/img/avatar/avatar-5.png" class="rounded-circle">
+                            </div>
+                            <div class="dropdown-item-desc">
+                                <b>Alfa Zulkarnain</b>
+                                <p>Exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                                <div class="time">Yesterday</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="dropdown-footer text-center">
+                        <a href="#">View All <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    </div>
+                </li>
+                <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
+                    <div class="dropdown-menu dropdown-list dropdown-menu-right">
+                    <div class="dropdown-header">Notifications
+                        <div class="float-right">
+                            <a href="#">Mark All As Read</a>
+                        </div>
+                    </div>
+                    <div class="dropdown-list-content dropdown-list-icons">
+                        <a href="#" class="dropdown-item dropdown-item-unread">
+                            <div class="dropdown-item-icon bg-primary text-white">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="dropdown-item-desc"> Template update is available now!
+                                <div class="time text-primary">2 Min Ago</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <div class="dropdown-item-icon bg-info text-white">
+                                <i class="far fa-user"></i>
+                            </div>
+                            <div class="dropdown-item-desc">
+                                <b>You</b> and <b>Dedik Sugiharto</b> are now friends
+                                <div class="time">10 Hours Ago</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <div class="dropdown-item-icon bg-success text-white">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="dropdown-item-desc">
+                                <b>Kusnaedi</b> has moved task <b>Fix bug header</b> to <b>Done</b>
+                                <div class="time">12 Hours Ago</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <div class="dropdown-item-icon bg-danger text-white">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="dropdown-item-desc">
+                                Low disk space. Let's clean it!
+                                <div class="time">17 Hours Ago</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <div class="dropdown-item-icon bg-info text-white">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="dropdown-item-desc">
+                                Welcome to CodiePie template!
+                                <div class="time">Yesterday</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="dropdown-footer text-center">
+                        <a href="#">View All <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                    <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+                    <div class="d-sm-none d-lg-inline-block">Hi, Abebe Zewdu</div></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-title">Logged in 5 min ago</div>
+                        <a href="features-profile.html" class="dropdown-item has-icon"><i class="far fa-user"></i> Profile</a>
+                        <a href="features-activities.html" class="dropdown-item has-icon"><i class="fas fa-bolt"></i> Activities</a>
+                        <a href="features-settings.html" class="dropdown-item has-icon"><i class="fas fa-cog"></i> Settings</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item has-icon text-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Start main left sidebar menu -->
+        <div class="main-sidebar sidebar-style-2">
+            <aside id="sidebar-wrapper">
+                <div class="sidebar-brand">
+                    <a href="index-2.html">Kuriftu HUB</a>
+                </div>
+                <div class="sidebar-brand sidebar-brand-sm">
+                    <a href="index-2.html">CP</a>
+                </div>
+                <ul class="sidebar-menu">
+                    <li class="menu-header">Home</li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="nav-link" href="index-0.html">Courses</a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                    <li class="dropdown">
+                        <a href="feedback.html" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i> <span>Feedback</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="utilities-contact.html">Contact</a></li>
+                            <
+                        </ul>
+                    </li>
+                    <li><a class="nav-link" href="credits.html"><i class="fas fa-pencil-ruler"></i> <span>Support</span></a></li>
+                </ul>
+                
+            </aside>
+        </div>
+
+        <!-- Start app main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="section-header">
+                    <h1>COURSES</h1>
+                    <div class="section-header-breadcrumb">
+                        <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+                        <div class="breadcrumb-item"><a href="#">Feedback</a></div>
+                        <div class="breadcrumb-item">Support</div>
+                    </div>
+                </div>
+
+                </div>
+                 <div class="main-content" style="margin-top: -33%;">
+            <div class="section-header">
+                <h1 class="section-title"   style="margin-bottom: 2%;">Progress Tracker</h1>
+                
+            </div>
+            <div class="row">      
+                <div class="col-12 col-sm-12 col-lg-6">
+                    <!-- User Progress -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Cource Progress</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="media">
+                                <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Debra Stewart" width="50">
+                                <div class="media-body">
+                                    <div class="media-title">Debra Stewart</div>
+                                    <div class="text-job">Web Developer</div>
+                                </div>
+                                <div class="media-progressbar">
+                                    <div class="progress-text">30%</div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 30%"></div>
+                                    </div>
+                                </div>
+                                <div class="media-cta">
+                                    <a href="#" class="btn btn-outline-primary">Detail</a>
+                                </div>
+                            </div>
+                            
+                            <div class="media">
+                                <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Marshall Nichols" width="50">
+                                <div class="media-body">
+                                    <div class="media-title">Marshall Nichols</div>
+                                    <div class="text-job">Web Developer</div>
+                                </div>
+                                <div class="media-progressbar">
+                                    <div class="progress-text">67%</div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 67%"></div>
+                                    </div>
+                                </div>
+                                <div class="media-cta">
+                                    <a href="#" class="btn btn-outline-primary">Detail</a>
+                                </div>
+                            </div>
+                            
+                            <div class="media">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Susie Willis" width="50">
+                                <div class="media-body">
+                                    <div class="media-title">Susie Willis</div>
+                                    <div class="text-job">Web Developer</div>
+                                </div>
+                                <div class="media-progressbar">
+                                    <div class="progress-text">45%</div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 45%"></div>
+                                    </div>
+                                </div>
+                                <div class="media-cta">
+                                    <a href="#" class="btn btn-outline-primary">Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- User Details -->
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h3>Employee Details</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="media">
+                                <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Debra Stewart" width="50">
+                                <div class="media-body">
+                                    <div class="media-title">Debra Stewart</div>
+                                    <div class="text-job">Web Developer</div>
+                                </div>
+                                <div class="media-items">
+                                    <div class="media-item">
+                                        <div class="media-value">1,239</div>
+                                        <div class="media-label">courses</div>
+                                    </div>
+                                    <div class="media-item">
+                                        <div class="media-value">10K</div>
+                                        <div class="media-label">Timespent</div>
+                                    </div>
+            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple script to handle dropdown menus
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownToggles = document.querySelectorAll('.menu-item.has-dropdown');
+            
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const dropdownMenu = this.nextElementSibling;
+                    dropdownMenu.classList.toggle('show');
+                });
+            });
+            
+            // Follow button toggle functionality
+            const followButtons = document.querySelectorAll('.follow-btn, .following-btn');
+            
+            followButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.classList.contains('btn-primary')) {
+                        this.classList.remove('btn-primary');
+                        this.classList.add('btn-danger');
+                        this.textContent = 'Following';
+                    } else {
+                        this.classList.remove('btn-danger');
+                        this.classList.add('btn-primary');
+                        this.textContent = 'Follow';
+                    }
+                });
+            });
+        });
+    </script>
+
+
+      
+
+            </section>
+            
+        </div>
+
+        <!-- Start app Footer part -->
+       
+    </div>
+</div>
+
+<!-- General JS Scripts -->
+<script src="assets/bundles/lib.vendor.bundle.js"></script>
+<script src="js/CodiePie.js"></script>
+
+<!-- JS Libraies -->
+
+<!-- Page Specific JS File -->
+
+<!-- Template JS File -->
+<script src="js/scripts.js"></script>
+<script src="js/custom.js"></script>
+</body>
+
+<!-- components-article.html  Tue, 07 Jan 2020 03:36:58 GMT -->
+</html>
