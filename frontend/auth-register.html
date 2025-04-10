@@ -25,13 +25,17 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px;
+      padding: 30px;
     }
 
     ul.nav {
       display: flex;
       gap: 5%;
       margin-bottom: 30px;
+      width: 50%;
+
+      justify-content: center;
+    
     }
 
     ul.nav li {
@@ -39,8 +43,8 @@
       cursor: pointer;
       color: black;
       font-weight: 600;
-      font-size: 16px;
-      margin-top: 15%;
+      font-size: 15px;
+      margin-top: 0%;
       border-bottom: 2px solid transparent;
       transition: border-color var(--transition-speed);
     }
@@ -51,7 +55,7 @@
 
     .wrapper {
       width: 450px;
-      height: 650px;
+      height: 700px;
       perspective: 1000px;
     }
 
@@ -67,7 +71,7 @@
     .face {
       position: absolute;
       width: 450px;
-      height: 650px;
+      height: 550px;
       padding: 30px;
       background-color: var(--light); /* Set background color to white */
       border: 2px solid var(--green);
@@ -158,7 +162,7 @@
       color: rgb(21, 33, 4);
       cursor: pointer;
       display: block;
-      margin-top: 10px;
+      margin-top: 5px;
       text-align: center;
     }
   </style>
