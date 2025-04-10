@@ -7,7 +7,9 @@ const dbcon = mysql2.createPool({
   database: process.env.DATABASE,
   host: process.env.HOST,
   password: process.env.PASSWORD,
- 
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 })
 
 module.exports = dbcon.promise()

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 2 – Communication Techniques</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .sidebar {
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 250px;
+      background-color: #ffffff;
+      border-right: 1px solid #dee2e6;
+      padding-top: 20px;
+    }
+    .main-content {
+      margin-left: 250px;
+      padding: 30px;
+    }
+    .nav-link.active {
+      background-color: #e7f1ff;
+      font-weight: bold;
+      color: #198754 !important;
+    }
+    .lesson-container {
+      max-width: 800px;
+      margin: auto;
+      padding-top: 30px;
+    }
+    .text-primary {
+      color: #198754 !important;
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <!-- Sidebar -->
+  <div class="sidebar d-flex flex-column p-3">
+    <h4 class="text-primary mb-4 text-center">🏝 Resort Training</h4>
+    <ul class="nav nav-pills flex-column" id="trainingTabs">
+      <li class="nav-item">
+        <a href="#" class="nav-link" data-bs-target="#courses" data-bs-toggle="tab">📘 Courses</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link" data-bs-target="#quizzes" data-bs-toggle="tab">🧠 Quizzes</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link" data-bs-target="#progress" data-bs-toggle="tab">📊 Progress</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="container lesson-container">
+      <h2 class="text-primary">Hospitality 101</h2>
+      <h4>Lesson 2: Effective Communication Techniques</h4>
+      <p>Clear, respectful communication improves guest satisfaction and team coordination.</p>
+
+      <ul>
+        <li>Speaking clearly and confidently</li>
+        <li>Active listening with empathy</li>
+        <li>Non-verbal communication (body language, tone)</li>
+      </ul>
+
+      <div class="mt-4 d-flex justify-content-between">
+        <a href="lesson-hospitality-1.html" class="btn btn-secondary">⬅ Previous</a>
+        <a href="lesson-hospitality-3.html" class="btn btn-success">Next ➡</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

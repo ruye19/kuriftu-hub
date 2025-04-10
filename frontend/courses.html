@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resort Training Portal</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      min-height: 100vh;
+      background-color: #f8f9fa;
+    }
+    .sidebar {
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 250px;
+      background-color: #ffffff;
+      border-right: 1px solid #dee2e6;
+      padding-top: 20px;
+    }
+    .main-content {
+      margin-left: 250px;
+      padding: 30px;
+    }
+    .nav-link.active {
+      background-color: #e7f1ff;
+      font-weight: bold;
+      color: #198754 !important;
+    }
+    .text-primary {
+      color: #198754 !important;
+    }
+    .btn-outline-primary {
+      border-color: #198754;
+      color: #198754;
+    }
+    .btn-outline-primary:hover {
+      background-color: #198754;
+      color: #ffffff;
+    }
+    .course-img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar d-flex flex-column p-3">
+    <h4 class="text-primary mb-4 text-center">🏝 Resort Training</h4>
+    <ul class="nav nav-pills flex-column" id="trainingTabs">
+      <li class="nav-item">
+        <a href="#" class="nav-link active" data-bs-target="#courses" data-bs-toggle="tab">📘 Courses</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link" data-bs-target="#quizzes" data-bs-toggle="tab">🧠 Quizzes</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link" data-bs-target="#progress" data-bs-toggle="tab">📊 Progress</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="tab-content">
+
+      <!-- Courses Tab -->
+      <div class="tab-pane fade show active" id="courses">
+        <h2 class="mb-4 text-success">📘 Courses</h2>
+        <div class="row g-3">
+          <!-- Course 1: Hospitality 101 -->
+          <div class="col-md-6">
+            <div class="card">
+              <img src="https://via.placeholder.com/400x200?text=Hospitality+Image" class="card-img-top course-img" alt="Hospitality 101">
+              <div class="card-body">
+                <h5 class="card-title">Hospitality 101</h5>
+                <p class="card-text">Duration: 3 hours</p>
+                <p class="card-text">Learn the fundamentals of excellent hospitality, from greeting guests to creating memorable experiences.</p>
+                <a href="lesson-hospitality-1.html" class="btn btn-outline-primary btn-sm">Enroll</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Course 2: Eco-Friendly Operations -->
+          <div class="col-md-6">
+            <div class="card">
+              <img src="https://via.placeholder.com/400x200?text=Eco+Friendly+Operations" class="card-img-top course-img" alt="Eco-Friendly Operations">
+              <div class="card-body">
+                <h5 class="card-title">Eco-Friendly Operations</h5>
+                <p class="card-text">Duration: 2 hours</p>
+                <p class="card-text">Explore sustainable practices to minimize environmental impact while improving resort operations.</p>
+                <a href="lesson-eco-1.html" class="btn btn-outline-primary btn-sm">Enroll</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quizzes Tab -->
+      <div class="tab-pane fade" id="quizzes">
+        <h2 class="mb-4 text-success">🧠 Quizzes</h2>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Hospitality Quiz</h5>
+                <p class="card-text">10 questions</p>
+                <a href="quizh.html" class="btn btn-outline-success btn-sm">Start Quiz</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Safety Quiz</h5>
+                <p class="card-text">8 questions</p>
+                <a href="quiz-safety.html" class="btn btn-outline-success btn-sm">Start Quiz</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Tab -->
+      <div class="tab-pane fade" id="progress">
+        <h2 class="mb-4 text-success">📊 My Progress</h2>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Hospitality 101
+            <span class="badge bg-success">Completed</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Eco-Friendly Operations
+            <span class="badge bg-warning text-dark">In Progress</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
