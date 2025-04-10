@@ -1,12 +1,14 @@
-const DBConnection = require("../db/dbConfig")
+const dbcon = require("../db/dbConfig")
 const bcrypt = require("bcrypt")
 
 const { StatusCodes } = require("http-status-codes")
 const jwt = require("jsonwebtoken")
 
+
+// register
 const register = async (req, res) => {
-  const { username, email, password, firstname, lastname } = req.body
-  if (!username || !email || !password || !firstname || !lastname) {
+  const {  email, password, username,full_name } = req.body
+  if (!username || !email || !password  || !full_name) {
     return res
       .status(StatusCodes.BAD_REQUEST)
       .json({ msg: "All input is required" })
@@ -18,7 +20,7 @@ const register = async (req, res) => {
       .json({ msg: "Password must be at least 8 characters" })
   }
   try {
-    const [user] = await DBConnection.query(
+    const [user] = await dbcon.query(
       "SELECT username,userid FROM users WHERE email = ? or username = ?",
       [email, username]
     )
@@ -27,16 +29,17 @@ const register = async (req, res) => {
     }
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(password, salt)
-    await DBConnection.query(
-      "INSERT INTO users (username,email,password,firstname,lastname) VALUES (?,?,?,?,?)",
-      [username, email, hashedPassword, firstname, lastname]
-    )
+    await dbcon.query(
+      "INSERT INTO users (username, email, password, full_name) VALUES (?, ?, ?, ?)", // ✅ Correct
+      [username, email, hashedPassword, full_name] // ✅ Now match
+    );
     return res.status(201).json({ msg: "User created" })
   } catch (error) {
-    return res.status(500).json({ msg: "Internal server error" })
+    console.log("register error:" , error)
+    return res.status(500).json({ msg: "Internal server error",error: message })
   }
 }
-
+// login 
 const login = async (req, res) => {
   const { email, password } = req.body
 
@@ -45,13 +48,13 @@ const login = async (req, res) => {
   }
 
   try {
-    const [user] = await DBConnection.query(
+    const [user] = await dbcon.query(
       "SELECT username, userid, password FROM users WHERE email = ?",
       [email]
     )
-
+  
     if (user.length == 0) {
-      return res.status(401).json({ msg: "Invalid credentials" })
+      return res.status(401).json({ msg: "Invaluserid credentials" })
     }
 
     const isMatch = await bcrypt.compare(password, user[0].password)
@@ -73,28 +76,28 @@ const login = async (req, res) => {
     return res.status(500).json({ msg: "Server faced an error" })
   }
 }
-async function checkUser(req, res) {
-  console.log("in check")
-  const username = req.user.username
-  const userid = req.user.userid
-  console.log(username, userid)
-  res.status(StatusCodes.OK).json({ msg: "valid user", username, userid })
+// async function checkUser(req, res) {
+//   console.log("in check")
+//   const fulname = req.user.username
+//   const userid = req.user.userid
+//   console.log(usernamename, userid)
+//   res.status(StatusCodes.OK).json({ msg: "valuserid user", username, userid })
   // res.send("hello this is check user")
-}
-async function getFullName(req, res) {
-  console.log("am in full name")
-  const [userfullname] = await DBConnection.query(
-    "SELECT *  FROM users WHERE userid = ?",
-    1
-  )
-  console.log(req.body.userid)
-  //   fullname = userfullname[0].firstname + " " + userfullname[0].lastname
-  //   console.log(
-  //     "user full name",
-  //     userfullname[0].firstname + " " + userfullname[0].lastname
-  //   )
-  //   res.status(StatusCodes.OK).json({ msg: "valid user", fullname })
-  // res.send("hello this is check user")
-}
+// }
+// async function getusername(req, res) {
+//   console.log("am in full name")
+//   const [userusername] = await dbcon.query(
+//     "SELECT *  FROM users WHERE userid = ?",
+//     1
+//   )
+//   console.log(req.body.userid)
+//     username = userusername[0].username
+//     console.log(
+//       "user full name",
+//       userusername[0].firstname + " " + userusername[0].lastname
+//     )
+//     res.status(StatusCodes.OK).json({ msg: "valuserid user", username })
+//   res.send("hello this is check user")
+// }
 
-module.exports = { login, register, checkUser, getFullName }
+module.exports = { login, register}
