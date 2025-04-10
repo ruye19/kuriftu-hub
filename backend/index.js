@@ -4,7 +4,8 @@ const app = express()
 const cors = require("cors")
 app.use(cors())
 const usersRoutes = require("./routes/userRoutes")
-const authMiddleWare = require(".authMiddleware.js");
+
+const authMiddleWare = require("./middleware/AuthMiddleware")
 PORT = 5500
 // const PORT = process.env.PORT || 5500
 const dbcon = require("./db/dbConfig")

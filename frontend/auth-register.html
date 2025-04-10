@@ -1,288 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- auth-register.html  Tue, 07 Jan 2020 03:39:47 GMT -->
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Professional Prism Form</title>
-  <style>
-    :root {
-      --green: #dbdbd9;
-      --light: #ffffff;
-      --text-dark: #0f4f11;
-      --border-radius: 2px;
-      --transition-speed: 0.4s;
-    }
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+<title>Register &mdash; CodiePie</title>
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<!-- General CSS Files -->
+<link rel="stylesheet" href="assets/modules/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/modules/fontawesome/css/all.min.css">
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px;
-    }
+<!-- CSS Libraries -->
+<link rel="stylesheet" href="assets/modules/jquery-selectric/selectric.css">
 
-    ul.nav {
-      display: flex;
-      gap: 5%;
-      margin-bottom: 30px;
-    }
-
-    ul.nav li {
-      list-style: none;
-      cursor: pointer;
-      color: black;
-      font-weight: 600;
-      font-size: 16px;
-      margin-top: 15%;
-      border-bottom: 2px solid transparent;
-      transition: border-color var(--transition-speed);
-    }
-
-    ul.nav li:hover {
-      color: rgb(118, 185, 16);
-    }
-
-    .wrapper {
-      width: 450px;
-      height: 650px;
-      perspective: 1000px;
-    }
-
-    .rec-prism {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      transform: translateZ(-200px);
-      transition: transform var(--transition-speed) ease-in-out;
-    }
-
-    .face {
-      position: absolute;
-      width: 450px;
-      height: 650px;
-      padding: 30px;
-      background-color: var(--light); /* Set background color to white */
-      border: 2px solid var(--green);
-      border-radius: var(--border-radius);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      color: var(--text-dark);
-      box-sizing: border-box;
-    }
-
-    .face h2 {
-      color:rgb(118, 185, 16);
-      margin-bottom: 10px;
-      font-size: 24px;
-    }
-
-    .face form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .field-wrapper {
-      position: relative;
-    }
-
-    .field-wrapper input,
-    .field-wrapper textarea {
-      width: 100%;
-      border: none;
-      padding: 10px;
-      background: transparent;
-      font-size: 16px;
-      color: var(--text-dark);
-      border-bottom: 2px solid var(--green);
-    }
-
-    .field-wrapper label {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-      font-size: 14px;
-      color: #888;
-      pointer-events: none;
-      transition: 0.3s;
-    }
-
-    .field-wrapper input:focus + label,
-    .field-wrapper input:not(:placeholder-shown) + label,
-    .field-wrapper textarea:focus + label,
-    .field-wrapper textarea:not(:placeholder-shown) + label {
-      top: -10px;
-      font-size: 12px;
-    color: rgb(118, 185, 16);
-    }
-
-    input[type="submit"] {
-      background: rgb(118, 185, 16);
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: var(--border-radius);
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    input[type="submit"]:hover {
-      background: #145b33;
-    }
-
-    .face-front    { transform: rotateY(0deg) translateZ(200px); }
-    .face-back     { transform: rotateY(180deg) translateZ(200px); }
-    .face-right    { transform: rotateY(90deg) translateZ(200px); }
-    .face-left     { transform: rotateY(-90deg) translateZ(200px); }
-    .face-top      { transform: rotateX(90deg) translateZ(200px); }
-    .face-bottom   { transform: rotateX(-90deg) translateZ(200px); }
-
-    .thank-you-msg {
-      font-size: 1.5em;
-      color: rgb(118, 185, 16);
-      text-align: center;
-    }
-
-    .extra-links span {
-      font-size: 14px;
-      color: rgb(21, 33, 4);
-      cursor: pointer;
-      display: block;
-      margin-top: 10px;
-      text-align: center;
-    }
-  </style>
+<!-- Template CSS -->
+<link rel="stylesheet" href="assets/css/style.min.css">
+<link rel="stylesheet" href="assets/css/components.min.css">
 </head>
-<body>
-  <ul class="nav">
-    <li onclick="showLogin()">Login</li>
-    <li onclick="showSignup()">Sign up</li>
-    <li onclick="showForgotPassword()">Forgot password</li>
-    <!-- <li onclick="showSubscribe()">Subscribe</li> -->
-    <li onclick="showContactUs()">Contact us</li>
-  </ul>
 
-  <div class="wrapper">
-    <div class="rec-prism">
-      <div class="face face-front">
-        <h2>Sign In</h2>
-        <form onsubmit="event.preventDefault()">
-          <div class="field-wrapper">
-            <input type="text" placeholder=" " />
-            <label>Username</label>
-          </div>
-          <div class="field-wrapper">
-            <input type="password" placeholder=" " />
-            <label>Password</label>
-          </div>
-          <input type="submit" value="Login" onclick="showThankYou()" />
-          <div class="extra-links">
-            <span onclick="showForgotPassword()">Forgot password?</span>
-            <span onclick="showSignup()">Not a user? Sign up</span>
-          </div>
-        </form>
-      </div>
+<body class="layout-4">
 
-      <div class="face face-back">
-        <h2>Forgot Password</h2>
-        <form onsubmit="event.preventDefault()">
-          <div class="field-wrapper">
-            <input type="text" placeholder=" " />
-            <label>Email</label>
-          </div>
-          <input type="submit" value="Reset" onclick="showThankYou()" />
-        </form>
-      </div>
+<div id="app">
+    <section class="section">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
+                    <div class="login-brand">
+                        <img src="http://puffintheme.com/craft/codiepie/dist/assets/img/CodiePie-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle">
+                    </div>
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h4>Register</h4>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST">
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label for="frist_name">First Name</label>
+                                        <input id="frist_name" type="text" class="form-control" name="frist_name" autofocus>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label for="last_name">Last Name</label>
+                                        <input id="last_name" type="text" class="form-control" name="last_name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input id="email" type="email" class="form-control" name="email">
+                                    <div class="invalid-feedback">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label for="password" class="d-block">Password</label>
+                                        <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password">
+                                        <div id="pwindicator" class="pwindicator">
+                                            <div class="bar"></div>
+                                            <div class="label"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label for="password2" class="d-block">Password Confirmation</label>
+                                        <input id="password2" type="password" class="form-control" name="password-confirm">
+                                    </div>
+                                </div>
+                                <div class="form-divider">Your Home</div>
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label>Country</label>
+                                        <select class="form-control selectric">
+                                            <option>USA</option>
+                                            <option>Palestine</option>
+                                            <option>Syria</option>
+                                            <option>Malaysia</option>
+                                            <option>Thailand</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label>Province</label>
+                                        <select class="form-control selectric">
+                                            <option>West Java</option>
+                                            <option>East Java</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label>City</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label>Postal Code</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="agree" class="custom-control-input" id="agree">
+                                        <label class="custom-control-label" for="agree">I agree with the terms and conditions</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="simple-footer">
+                        Copyright &copy; CodiePie 2020
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 
-      <div class="face face-right">
-        <h2>Sign Up</h2>
-        <form onsubmit="event.preventDefault()">
-          <div class="field-wrapper">
-            <input type="text" placeholder=" " />
-            <label>Email</label>
-          </div>
-          <div class="field-wrapper">
-            <input type="password" placeholder=" " />
-            <label>Password</label>
-          </div>
-          <div class="field-wrapper">
-            <input type="password" placeholder=" " />
-            <label>Re-enter Password</label>
-          </div>
-          <input type="submit" value="Sign Up" onclick="showThankYou()" />
-          <div class="extra-links">
-            <span onclick="showLogin()">Already a user? Sign in</span>
-          </div>
-        </form>
-      </div>
+<!-- General JS Scripts -->
+<script src="assets/bundles/lib.vendor.bundle.js"></script>
+<script src="js/CodiePie.js"></script>
 
-      <div class="face face-left">
-        <h2>Contact Us</h2>
-        <form onsubmit="event.preventDefault()">
-          <div class="field-wrapper">
-            <input type="text" placeholder=" " />
-            <label>Name</label>
-          </div>
-          <div class="field-wrapper">
-            <input type="text" placeholder=" " />
-            <label>Email</label>
-          </div>
-          <div class="field-wrapper">
-            <textarea placeholder=" "></textarea>
-            <label>Your message</label>
-          </div>
-          <input type="submit" value="Send" onclick="showThankYou()" />
-        </form>
-      </div>
+<!-- JS Libraies -->
+<script src="assets/modules/jquery-pwstrength/jquery.pwstrength.min.js"></script>
+<script src="assets/modules/jquery-selectric/jquery.selectric.min.js"></script>
 
-      <div class="face face-top">
-        <h2>Subscribe</h2>
-        <form onsubmit="event.preventDefault()">
-          <div class="field-wrapper">
-            <input type="text" placeholder=" " />
-            <label>Email</label>
-          </div>
-          <input type="submit" value="Subscribe" onclick="showThankYou()" />
-        </form>
-      </div>
+<!-- Page Specific JS File -->
+<script src="js/page/auth-register.js"></script>
 
-      <div class="face face-bottom">
-        <div class="thank-you-msg">Thank you!</div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const prism = document.querySelector(".rec-prism");
-
-    function showSignup() {
-      prism.style.transform = "translateZ(-200px) rotateY(-90deg)";
-    }
-    function showLogin() {
-      prism.style.transform = "translateZ(-200px)";
-    }
-    function showForgotPassword() {
-      prism.style.transform = "translateZ(-200px) rotateY(180deg)";
-    }
-    function showSubscribe() {
-      prism.style.transform = "translateZ(-200px) rotateX(-90deg)";
-    }
-    function showContactUs() {
-      prism.style.transform = "translateZ(-200px) rotateY(90deg)";
-    }
-    function showThankYou() {
-      prism.style.transform = "translateZ(-200px) rotateX(90deg)";
-    }
-  </script>
+<!-- Template JS File -->
+<script src="js/scripts.js"></script>
+<script src="js/custom.js"></script>
 </body>
+
+<!-- auth-register.html  Tue, 07 Jan 2020 03:39:48 GMT -->
 </html>
