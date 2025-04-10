@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Professional Prism Form</title>
+  <style>
+    :root {
+      --green: #dbdbd9;
+      --light: #ffffff;
+      --text-dark: #0f4f11;
+      --border-radius: 2px;
+      --transition-speed: 0.4s;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+    }
+
+    ul.nav {
+      display: flex;
+      gap: 5%;
+      margin-bottom: 30px;
+      width: 50%;
+      justify-content: center;
+    }
+
+    ul.nav li {
+      list-style: none;
+      cursor: pointer;
+      color: black;
+      font-weight: 600;
+      font-size: 15px;
+      margin-top: 0%;
+      border-bottom: 2px solid transparent;
+      transition: border-color var(--transition-speed);
+    }
+
+    ul.nav li:hover {
+      color: rgb(118, 185, 16);
+    }
+
+    .wrapper {
+      width: 450px;
+      height: 700px;
+      perspective: 1000px;
+    }
+
+    .rec-prism {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transform: translateZ(-200px);
+      transition: transform var(--transition-speed) ease-in-out;
+    }
+
+    .face {
+      position: absolute;
+      width: 450px;
+      height: 550px;
+      padding: 30px;
+      background-color: var(--light);
+      border: 2px solid var(--green);
+      border-radius: var(--border-radius);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: var(--text-dark);
+      box-sizing: border-box;
+    }
+
+    .face h2 {
+      color:rgb(118, 185, 16);
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+
+    .face form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .field-wrapper {
+      position: relative;
+    }
+
+    .field-wrapper input,
+    .field-wrapper textarea {
+      width: 100%;
+      border: none;
+      padding: 10px;
+      background: transparent;
+      font-size: 16px;
+      color: var(--text-dark);
+      border-bottom: 2px solid var(--green);
+    }
+
+    .field-wrapper label {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      font-size: 14px;
+      color: #888;
+      pointer-events: none;
+      transition: 0.3s;
+    }
+
+    .field-wrapper input:focus + label,
+    .field-wrapper input:not(:placeholder-shown) + label,
+    .field-wrapper textarea:focus + label,
+    .field-wrapper textarea:not(:placeholder-shown) + label {
+      top: -10px;
+      font-size: 12px;
+      color: rgb(118, 185, 16);
+    }
+
+    input[type="submit"] {
+      background: rgb(118, 185, 16);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background: #145b33;
+    }
+
+    .face-front    { transform: rotateY(0deg) translateZ(200px); }
+    .face-back     { transform: rotateY(180deg) translateZ(200px); }
+    .face-right    { transform: rotateY(90deg) translateZ(200px); }
+    .face-left     { transform: rotateY(-90deg) translateZ(200px); }
+    .face-top      { transform: rotateX(90deg) translateZ(200px); }
+    .face-bottom   { transform: rotateX(-90deg) translateZ(200px); }
+
+    .thank-you-msg {
+      font-size: 1.5em;
+      color: rgb(118, 185, 16);
+      text-align: center;
+    }
+
+    .extra-links span {
+      font-size: 14px;
+      color: rgb(21, 33, 4);
+      cursor: pointer;
+      display: block;
+      margin-top: 5px;
+      text-align: center;
+    }
+
+    .error-message {
+      color: #ff3333;
+      font-size: 14px;
+      margin-top: -15px;
+      margin-bottom: 10px;
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <ul class="nav">
+    <li onclick="showLogin()">Login</li>
+    <li onclick="showSignup()">Sign up</li>
+    <li onclick="showForgotPassword()">Forgot password</li>
+    <li onclick="showContactUs()">Contact us</li>
+  </ul>
+
+  <div class="wrapper">
+    <div class="rec-prism">
+      <!-- Login Face -->
+      <div class="face face-front">
+        <h2>Sign In</h2>
+        <form id="loginForm">
+          <div id="login-error" class="error-message"></div>
+          <div class="field-wrapper">
+            <input id="login-email" type="email" placeholder=" " required />
+            <label>Email</label>
+          </div>
+          <div class="field-wrapper password-container">
+            <input id="login-password" type="password" placeholder=" " required />
+            <label>Password</label>
+            <span class="password-toggle" onclick="togglePassword('login-password', 'login-eye-icon')">
+              <i id="login-eye-icon" class="far fa-eye-slash"></i>
+            </span>
+          </div>
+          <input type="submit" value="Login" />
+          <div class="extra-links">
+            <span onclick="showForgotPassword()">Forgot password?</span>
+            <span onclick="showSignup()">Not a user? Sign up</span>
+          </div>
+        </form>
+      </div>
+
+      <!-- Forgot Password Face -->
+      <div class="face face-back">
+        <h2>Forgot Password</h2>
+        <form id="forgotPasswordForm">
+          <div id="forgot-error" class="error-message"></div>
+          <div class="field-wrapper">
+            <input id="forgot-email" type="email" placeholder=" " required />
+            <label>Email</label>
+          </div>
+          <input type="submit" value="Reset" />
+        </form>
+      </div>
+
+      <!-- Signup Face -->
+      <div class="face face-right">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+          <div id="signup-error" class="error-message"></div>
+          <div class="field-wrapper">
+            <input id="signup-email" type="email" placeholder=" " required />
+            <label>Email</label>
+          </div>
+          <div class="field-wrapper">
+            <input id="signup-full_name" type="name" placeholder=" " required />
+            <label>full name</label>
+          </div>
+          <div class="field-wrapper">
+            <input id="signup-username" type="name" placeholder=" " required />
+            <label>user name</label>
+          </div>
+          <div class="field-wrapper password-container">
+            <input id="signup-password" type="password" placeholder=" " required />
+            <label>Password</label>
+            <span class="password-toggle" onclick="togglePassword('signup-password', 'signup-eye-icon')">
+              <i id="signup-eye-icon" class="far fa-eye-slash"></i>
+            </span>
+          </div>
+          <div class="field-wrapper password-container">
+            <input id="signup-confirm-password" type="password" placeholder=" " required />
+            <label>Confirm Password</label>
+            <span class="password-toggle" onclick="togglePassword('signup-confirm-password', 'signup-confirm-eye-icon')">
+              <i id="signup-confirm-eye-icon" class="far fa-eye-slash"></i>
+            </span>
+          </div>
+          <input type="submit" value="Sign Up" />
+          <div class="extra-links">
+            <span onclick="showLogin()">Already a user? Sign in</span>
+          </div>
+        </form>
+      </div>
+
+      <!-- Contact Us Face -->
+      <div class="face face-left">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+          <div id="contact-error" class="error-message"></div>
+          <div class="field-wrapper">
+            <input id="contact-name" type="text" placeholder=" " required />
+            <label>Name</label>
+          </div>
+          <div class="field-wrapper">
+            <input id="contact-email" type="email" placeholder=" " required />
+            <label>Email</label>
+          </div>
+          <div class="field-wrapper">
+            <textarea id="contact-message" placeholder=" " required></textarea>
+            <label>Your message</label>
+          </div>
+          <input type="submit" value="Send" />
+        </form>
+      </div>
+
+      <!-- Subscribe Face -->
+      <!-- <div class="face face-top">
+        <h2>Subscribe</h2>
+        <form id="subscribeForm">
+          <div id="subscribe-error" class="error-message"></div>
+          <div class="field-wrapper">
+            <input id="subscribe-email" type="email" placeholder=" " required />
+            <label>Email</label>
+          </div>
+          <input type="submit" value="Subscribe" />
+        </form>
+      </div> -->
+
+      <!-- Thank You Face -->
+      <div class="face face-bottom">
+        <div class="thank-you-msg">Thank you!</div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- javascript started -->
+  <script>
+    // Prism rotation functions
+    const prism = document.querySelector(".rec-prism");
+
+    function showSignup() {
+      prism.style.transform = "translateZ(-200px) rotateY(-90deg)";
+    }
+    function showLogin() {
+      prism.style.transform = "translateZ(-200px)";
+    }
+    function showForgotPassword() {
+      prism.style.transform = "translateZ(-200px) rotateY(180deg)";
+    }
+    function showContactUs() {
+      prism.style.transform = "translateZ(-200px) rotateY(90deg)";
+    }
+    function showThankYou() {
+      prism.style.transform = "translateZ(-200px) rotateX(90deg)";
+      // Reset after 2 seconds
+      setTimeout(showLogin, 2000);
+    }
+
+    // Password toggle function
+    function togglePassword(inputId, iconId) {
+      const input = document.getElementById(inputId);
+      const icon = document.getElementById(iconId);
+      
+      if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+        icon.style.color = "rgb(118, 185, 16)";
+      } else {
+        input.type = "password";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+        icon.style.color = "#888";
+      }
+    }
+
+    // Login functionality
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      const errorElement = document.getElementById('login-error');
+
+      if (!email || !password) {
+        errorElement.textContent = "Please provide both email and password.";
+        return;
+      }
+
+      try {
+        const response = await axios.post("http://localhost:5500/api/users/login", {
+          email: email,
+          password: password
+        });
+        
+        const data = response.data;
+        localStorage.setItem("token", data.token);
+        showThankYou();
+        
+        // Here you would typically redirect or update UI
+        // window.location.href = '/home';
+      } catch (error) {
+        errorElement.textContent = error.response?.data?.msg || "Invalid email or password.";
+        console.error("Login error:", error);
+      }
+    });
+
+    // Forgot password functionality
+    document.getElementById('forgotPasswordForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('forgot-email').value;
+      const errorElement = document.getElementById('forgot-error');
+
+      if (!email) {
+        errorElement.textContent = "Please provide your email.";
+        return;
+      }
+
+      try {
+        await axios.post("/api/users/forgot-password", { email });
+        showThankYou();
+      } catch (error) {
+        errorElement.textContent = error.response?.data?.msg || "Error sending reset email.";
+      }
+    });
+
+    // Signup functionality
+    document.getElementById('signupForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+      const username = document.getElementById('signup-username').value;
+      const full_name= document.getElementById('signup-full_name').value;
+      const confirmPassword = document.getElementById('signup-confirm-password').value;
+      const errorElement = document.getElementById('signup-error');
+
+      if (!email || !password || !confirmPassword || !full_name) {
+        errorElement.textContent = "Please fill all fields.";
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        errorElement.textContent = "Passwords don't match.";
+        return;
+      }
+      console.log("Request to:", "http://localhost:5500/api/users/signup", {
+        email,
+        password,
+        username,
+        full_name
+      });
+
+
+      try {
+        const response = await axios.post("http://localhost:5500/api/users/signup", {
+          email,
+          password,
+          username,
+          full_name
+
+        },);
+        
+        localStorage.setItem("token", response.data.token);
+        showThankYou();
+      } catch (error) {
+
+        console.log("the error is :" ,error.message)
+
+        errorElement.textContent = error.response?.data?.msg || "Error creating account.";
+      }
+    });
+
+    // Contact form functionality
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const name = document.getElementById('contact-name').value;
+      const email = document.getElementById('contact-email').value;
+      const message = document.getElementById('contact-message').value;
+      const errorElement = document.getElementById('contact-error');
+
+      if (!name || !email || !message) {
+        errorElement.textContent = "Please fill all fields.";
+        return;
+      }
+
+      try {
+        await axios.post("/api/contact", { name, email, message });
+        showThankYou();
+      } catch (error) {
+        errorElement.textContent = "Error sending message. Please try again later.";
+      }
+    });
+
+    // Subscribe functionality
+    // document.getElementById('subscribeForm').addEventListener('submit', async function(e) {
+    //   e.preventDefault();
+    //   const email = document.getElementById('subscribe-email').value;
+    //   const errorElement = document.getElementById('subscribe-error');
+
+    //   if (!email) {
+    //     errorElement.textContent = "Please provide your email.";
+    //     return;
+    //   }
+
+    //   try {
+    //     await axios.post("/api/subscribe", { email });
+    //     showThankYou();
+    //   } catch (error) {
+    //     errorElement.textContent = "Error subscribing. Please try again.";
+    //   }
+    // });
+  </script>
+</body>
+</html>
