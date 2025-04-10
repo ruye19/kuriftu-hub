@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lesson 1 – Hospitality 101</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .sidebar {
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 250px;
+      background-color: #ffffff;
+      border-right: 1px solid #dee2e6;
+      padding-top: 20px;
+    }
+    .main-content {
+      margin-left: 250px;
+      padding: 30px;
+    }
+    .nav-link.active {
+      background-color: #e7f1ff;
+      font-weight: bold;
+      color: #198754 !important;
+    }
+    .lesson-container {
+      max-width: 800px;
+      margin: auto;
+      padding-top: 30px;
+    }
+    .text-primary {
+      color: #198754 !important;
+    }
+  </style>
+</head>
+<body class="bg-light">
+    <!-- Sidebar -->
+    <div class="sidebar d-flex flex-column p-3">
+      <h4 class="text-primary mb-4 text-center">🏝 Resort Training</h4>
+      <ul class="nav nav-pills flex-column" id="trainingTabs">
+        <li class="nav-item">
+          <a href="#" class="nav-link active" data-bs-target="#courses" data-bs-toggle="tab">📘 Courses</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" data-bs-target="#quizzes" data-bs-toggle="tab">🧠 Quizzes</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" data-bs-target="#progress" data-bs-toggle="tab">📊 Progress</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="container lesson-container">
+        <h4 class="text-primary">🏨 Hospitality 101</h4>
+        <p class="text-muted">Lesson 1 of 4: Understanding Guest Needs</p>
+
+        <hr />
+
+        <div class="mb-4">
+          <h5>👋 Welcome to Lesson 1</h5>
+          <p>In this lesson, you’ll learn about identifying and fulfilling the diverse needs of resort guests.</p>
+
+          <p>Guests may come for relaxation, adventure, business, or family bonding. It’s crucial to anticipate their needs based on their purpose of visit, cultural expectations, and communication style.</p>
+
+          <div class="alert alert-info">
+            💡 Tip: Always greet guests with a smile and personalized attention — it makes a lasting impression!
+          </div>
+
+          <img src="https://via.placeholder.com/700x300?text=Happy+Guest+Interaction" class="img-fluid rounded shadow-sm mb-3" alt="Guest Interaction">
+
+          <p>Here’s a short checklist for guest interaction:</p>
+          <ul>
+            <li>Greet with eye contact and a smile</li>
+            <li>Use guest’s name whenever possible</li>
+            <li>Offer help proactively</li>
+            <li>Listen actively without interrupting</li>
+          </ul>
+        </div>
+
+        <hr />
+
+        <div class="d-flex justify-content-between">
+          <a href="courses.html" class="btn btn-secondary">⬅ Back to Course</a>
+          <a href="lesson-hospitality-2.html" class="btn btn-success">✅ Complete & Next</a>
+        </div>
+      </div>
+    </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
