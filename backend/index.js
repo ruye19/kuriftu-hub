@@ -1,7 +1,4 @@
-//require("dotenv").config();
 const express = require("express")
-
-
 const cors = require('cors');
 const app = express();
 
@@ -12,19 +9,28 @@ app.use(cors());
 app.use(express.json());
 
 const usersRoutes = require("./routes/userRoutes")
+const courseRoutes = require("./routes/courseRoute");
+const feedbackRoutes = require("./routes/feedbackRoute");
 const authMiddleWare = require("./middleware/authMiddleware");
 PORT = 5500
 // const PORT = process.env.PORT || 5500
 const dbcon = require("./db/dbConfig")
 //login route
-app.use(express.static("public"));
 
-app.get("/api/users", (req, res) => {
-  console.log("API User endpoint hit!");
-  res.json({ test: "working" });
-});
+
+
+
+app.get("/", (req, res) => {
+    res.send("hello")
+
+})
+
+
+
 
 app.use("/api/users", usersRoutes)
+
+
 
 async function start() {
   try {
