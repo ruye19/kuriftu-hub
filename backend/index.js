@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 const usersRoutes = require("./routes/userRoutes")
-const authMiddleWare = require(".authMiddleware.js");
+const authMiddleWare = require("./middleware/authMiddleware");
 PORT = 5500
 // const PORT = process.env.PORT || 5500
 const dbcon = require("./db/dbConfig")
@@ -22,7 +22,7 @@ app.use(express.static("public"));
 
 
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "../public/index.html");
+    res.send("hello")
 
 })
 
@@ -46,7 +46,7 @@ async function start() {
 
 start()
 
-app.listen(3000, (err) => {
+app.listen(PORT, (err) => {
   if (err) {
     console.log(err.message)
   } else {

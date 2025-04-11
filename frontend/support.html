@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard with Support</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      background-color: #f5f6fa;
+    }
+
+    .main-sidebar {
+      width: 250px;
+      background-color:white;
+      color: rgb(84, 214, 44);
+      height: 100vh;
+      position: fixed;
+      overflow-y: auto;
+      padding-top: 20px;
+    }
+
+    .sidebar-brand {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+      
+    }
+    .sidebar-brand a {
+  color: rgb(84, 214, 44); 
+  font-weight: bold;
+  font-size: 22px;
+  text-decoration: none;
+}
+
+
+    .sidebar-menu {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar-menu li {
+      margin: 5px 0;
+    }
+
+    .sidebar-menu a {
+      color: green;
+      text-decoration: none;
+      display: block;
+      padding: 12px 20px;
+      transition: 0.3s;
+    }
+
+    .sidebar-menu a:hover,
+    .sidebar-menu a.active {
+      background-color: rgb(84, 214, 44);
+      border-radius: 4px;
+    }
+
+    .dropdown-menu {
+      padding-left: 20px;
+    }
+
+    .main-content {
+      margin-left: 260px;
+      padding: 40px;
+      width: calc(100% - 260px);
+    }
+
+    .section {
+      display: none;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: white;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    h1 {
+      color: rgb(84, 214, 44);
+    }
+
+    h2 {
+      margin-top: 20px;
+      color: #2f855a;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="main-sidebar sidebar-style-2">
+    <aside id="sidebar-wrapper">
+      <div class="sidebar-brand">
+        <a href="#">Kuriftu HUB</a>
+      </div>
+      
+      <ul class="sidebar-menu">
+        <li class="menu-header">Home</li>
+        <li class="dropdown">
+          <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" href="#">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i> <span>Feedback</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </li>
+        <li><a class="nav-link" href="#" onclick="showSection('support')" id="support-link"><i class="fas fa-pencil-ruler"></i> <span>Support</span></a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div id="support" class="section active">
+      <h1>How to Use the Dashboard</h1>
+      <p>Welcome to the Kuriftu HUB Dashboard! Here's a quick guide on how to use it effectively:</p>
+
+      <h2>Navigation</h2>
+      <ul>
+        <li>Use the sidebar to access different sections such as Courses, Feedback, and Reports.</li>
+        <li>Click on any dropdown item to explore further options.</li>
+      </ul>
+
+      <h2>Feedback</h2>
+      <ul>
+        <li>If you experience any issues, visit the Feedback section and use the Contact form.</li>
+      </ul>
+
+      <h2>Credits</h2>
+      <ul>
+        <li>This dashboard was created by the Kuriftu HUB team to support your learning journey.</li>
+      </ul>
+
+      <h2>Need Help?</h2>
+      <ul>
+        <li>For technical help, contact us at <a href="mailto:support@kuriftu.com">support@kuriftu.com</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- JavaScript to toggle sections -->
+  <script>
+    function showSection(id) {
+      // Hide all sections
+      document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+      // Show selected section
+      document.getElementById(id).classList.add('active');
+
+      // Remove active class from all links
+      document.querySelectorAll('.sidebar-menu a').forEach(link => link.classList.remove('active'));
+      // Add active class to clicked link
+      document.getElementById(id + '-link')?.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

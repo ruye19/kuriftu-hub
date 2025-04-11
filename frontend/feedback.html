@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Form</title>
+  <style>
+    body {
+      background-color: #f6fff6;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .feedback-container {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 128, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .feedback-container h2 {
+      color: #2e8b57;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      color: #2e8b57;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #2e8b57;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-size: 14px;
+      background-color: #f9fff9;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      background-color: #2e8b57;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #256d47;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="feedback-container">
+    <h2>Give Us Your Feedback</h2>
+    <form>
+      <label for="name">Your Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+
+      <label for="email">Your Email</label>
+      <input type="email" id="email" placeholder="Enter your email" required>
+
+      <label for="message">Feedback</label>
+      <textarea id="message" rows="4" placeholder="Write your feedback here..." required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+</body>
+</html>
