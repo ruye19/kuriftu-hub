@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Components › User — CodiePie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: rgb(118, 185, 16);;
+            --primary-dark: #2d391c;
+            --primary-light: #d5f5e3;
+            --secondary: #2f724b;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+            --light-gray: #ecf0f1;
+            --white: #ffffff;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --success: #2ecc71;
+            --info: #3498db;
+            --border-radius: 4px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 20%;
+            background: var(--white);
+            box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.05);
+            /* transition: var(--transition); */         
+            height: 100vh;
+            z-index: 100;
+            padding: 3%;
+        }
+
+        .sidebar-brand {
+            padding: 5%;
+            margin-top: 4%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--light-gray);
+            color: rgb(118, 185, 16);
+            font-size: 2.3rem;
+            font-weight: 700;
+        }
+
+        .sidebar-menu {
+            padding: 20px 0;
+            font-size: 1.4rem;
+        }
+
+        .menu-header {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            color: var(--gray);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            color: var(--secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+
+        .menu-item i {
+            /* margin-right: ; */
+            width: 20px;
+            text-align: center;
+        }
+
+        .menu-item:hover {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border-left: 3px solid var(--primary);
+        }
+
+        .menu-item.active {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border-left: 3px solid var(--primary);
+            font-weight: 600;
+        }
+
+        .dropdown-menu {
+            padding-left: 20px;
+            display: none;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            color: var(--secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .dropdown-item i {
+            /* margin-right: 10px; */
+            width: 20px;
+            text-align: center;
+        }
+
+        .dropdown-item:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 20px;
+            background: #f5f7fa;
+        }
+
+        .section-header {
+            margin-bottom: 30px;
+            margin-top: 5%;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            color: darkolivegreen;
+            margin-bottom: 10px;
+            font-size:3rem;
+        }
+
+        .section-lead {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        .breadcrumb {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-item {
+            color: var(--gray);
+        }
+
+        .breadcrumb-item.active {
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .breadcrumb-item:not(:last-child)::after {
+            content: '/';
+            margin: 0 8px;
+            color: var(--gray);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+            border: none;
+            overflow: hidden;
+            
+        }
+
+        .card-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+        }
+
+        .card-header h4 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: var(--dark);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        /* Author Box */
+        .author-box {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        .author-box-left {
+            text-align: center;
+            margin-right: 20px;
+        }
+
+        .author-box-picture {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-light);
+            margin-bottom: 15px;
+        }
+
+        .author-box-details {
+            flex: 1;
+        }
+
+        .author-box-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .author-box-name a {
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .author-box-job {
+            color: var(--primary-dark);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .author-box-description {
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-primary {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline-primary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .btn-social-icon {
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .btn-facebook {
+            background: #3b5998;
+            color: white;
+        }
+
+        .btn-twitter {
+            background: #1da1f2;
+            color: white;
+        }
+
+        .btn-github {
+            background: #333;
+            color: white;
+        }
+
+        .btn-instagram {
+            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+            color: white;
+        }
+
+        /* User Items */
+        .user-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .user-item:hover {
+            background: var(--light-gray);
+        }
+
+        .user-item img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .user-details {
+            flex: 1;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .text-job {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .user-cta {
+            margin-left: 15px;
+        }
+
+        /* Comments */
+        .media {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .media:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .media img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .media-body {
+            flex: 1;
+            margin-left: 15px;
+        }
+
+        .media-title {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .text-time {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+
+        .media-description {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .media-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-right: 10px;
+        }
+
+        .media-links a:hover {
+            color: var(--primary-dark);
+        }
+
+        .bullet {
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background: var(--gray);
+            border-radius: 50%;
+            margin: 0 10px;
+        }
+
+        /* Progress */
+        .media-progressbar {
+            flex: 0 0 120px;
+            margin: 0 15px;
+        }
+
+        .progress-text {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 5px;
+        }
+
+        .progress {
+            height: 6px;
+            background: var(--light-gray);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        /* User Details */
+        .user-details {
+            display: flex;
+            align-items: center;
+        }
+
+        .media-items {
+            display: flex;
+        }
+
+        .media-item {
+            text-align: center;
+            padding: 0 15px;
+        }
+
+        .media-value {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+
+        .media-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* Avatar Items */
+        .avatar-item {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto;
+        }
+
+        .avatar-item img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .avatar-badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+        }
+
+        /* Profile Widget */
+        .profile-widget {
+            text-align: center;
+        }
+
+        .profile-widget-picture {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-light);
+            margin: -55px auto 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-widget-items {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-widget-item {
+            padding: 0 20px;
+        }
+
+        .profile-widget-item-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .profile-widget-item-value {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 80px;
+                overflow: hidden;
+            }
+            
+            .sidebar-brand span, 
+            .menu-item span,
+            .dropdown-menu {
+                display: none;
+            }
+            
+            .main-content {
+                margin-left: 80px;
+            }
+            
+            .menu-item {
+                justify-content: center;
+                padding: 15px 0;
+            }
+            
+            .menu-item i {
+                margin-right: 0;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .author-box {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .author-box-left {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .profile-widget-items {
+                flex-direction: column;
+            }
+            
+            .profile-widget-item {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <span>Kuriftu Hub</span>
+            </div>
+            
+            <div class="sidebar-menu">
+                <a href="#" class="menu-item active">
+                    <i class="fas fa-fire"></i>
+                    <span>Progress</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-book"></i>
+                    <span>Courses</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="far fa-comments"></i>
+                    <span>Feedback</span>
+                </a>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="section-header">
+                <h1 class="section-title">Progress Tracker</h1>
+                
+            </div>
+            <div class="row">      
+                <div class="col-12 col-sm-12 col-lg-6">
+                    <!-- User Progress -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Cource Progress</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="media">
+                                <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Debra Stewart" width="50">
+                                <div class="media-body">
+                                    <div class="media-title">Debra Stewart</div>
+                                    <div class="text-job">Web Developer</div>
+                                </div>
+                                <div class="media-progressbar">
+                                    <div class="progress-text">30%</div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 30%"></div>
+                                    </div>
+                                </div>
+                                <div class="media-cta">
+                                    <a href="#" class="btn btn-outline-primary">Detail</a>
+                                </div>
+                            </div>
+                            
+                            <div class="media">
+                                <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Marshall Nichols" width="50">
+                                <div class="media-body">
+                                    <div class="media-title">Marshall Nichols</div>
+                                    <div class="text-job">Web Developer</div>
+                                </div>
+                                <div class="media-progressbar">
+                                    <div class="progress-text">67%</div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 67%"></div>
+                                    </div>
+                                </div>
+                                <div class="media-cta">
+                                    <a href="#" class="btn btn-outline-primary">Detail</a>
+                                </div>
+                            </div>
+                            
+                            <div class="media">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Susie Willis" width="50">
+                                <div class="media-body">
+                                    <div class="media-title">Susie Willis</div>
+                                    <div class="text-job">Web Developer</div>
+                                </div>
+                                <div class="media-progressbar">
+                                    <div class="progress-text">45%</div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 45%"></div>
+                                    </div>
+                                </div>
+                                <div class="media-cta">
+                                    <a href="#" class="btn btn-outline-primary">Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- User Details -->
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h3>Employee Details</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="media">
+                                <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Debra Stewart" width="50">
+                                <div class="media-body">
+                                    <div class="media-title">Debra Stewart</div>
+                                    <div class="text-job">Web Developer</div>
+                                </div>
+                                <div class="media-items">
+                                    <div class="media-item">
+                                        <div class="media-value">1,239</div>
+                                        <div class="media-label">courses</div>
+                                    </div>
+                                    <div class="media-item">
+                                        <div class="media-value">10K</div>
+                                        <div class="media-label">Timespent</div>
+                                    </div>
+            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Simple script to handle dropdown menus
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownToggles = document.querySelectorAll('.menu-item.has-dropdown');
+            
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const dropdownMenu = this.nextElementSibling;
+                    dropdownMenu.classList.toggle('show');
+                });
+            });
+            
+            // Follow button toggle functionality
+            const followButtons = document.querySelectorAll('.follow-btn, .following-btn');
+            
+            followButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.classList.contains('btn-primary')) {
+                        this.classList.remove('btn-primary');
+                        this.classList.add('btn-danger');
+                        this.textContent = 'Following';
+                    } else {
+                        this.classList.remove('btn-danger');
+                        this.classList.add('btn-primary');
+                        this.textContent = 'Follow';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
