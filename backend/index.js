@@ -12,16 +12,22 @@ app.use(cors());
 app.use(express.json());
 
 const usersRoutes = require("./routes/userRoutes")
+const authMiddleWare = require("./middleware/authMiddleware");
 PORT = 5500
 // const PORT = process.env.PORT || 5500
 const dbcon = require("./db/dbConfig")
 //login route
+app.use(express.static("public"));
 
 
 
 app.get("/", (req, res) => {
-  res.send("done!")
+    res.send("hello")
+
 })
+
+
+
 
 app.use("/api/users", usersRoutes)
 
