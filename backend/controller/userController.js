@@ -5,7 +5,7 @@ const { StatusCodes } = require("http-status-codes")
 const jwt = require("jsonwebtoken")
 
 
-// register
+
 const register = async (req, res) => {
   const {  email, password, username,full_name } = req.body
   if (!username || !email || !password  || !full_name) {
@@ -30,8 +30,8 @@ const register = async (req, res) => {
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(password, salt)
     await dbcon.query(
-      "INSERT INTO users (username, email, password, full_name) VALUES (?, ?, ?, ?)", // ✅ Correct
-      [username, email, hashedPassword, full_name] // ✅ Now match
+      "INSERT INTO users (username, email, password, full_name) VALUES (?, ?, ?, ?)", 
+      [username, email, hashedPassword, full_name] 
     );
     return res.status(201).json({ msg: "User created" })
   } catch (error) {
@@ -39,6 +39,7 @@ const register = async (req, res) => {
     return res.status(500).json({ msg: "Internal server error",error: message })
   }
 }
+
 // login 
 const login = async (req, res) => {
   const { email, password } = req.body
