@@ -19,19 +19,12 @@ const dbcon = require("./db/dbConfig")
 //login route
 app.use(express.static("public"));
 
-
-
-app.get("/", (req, res) => {
-    res.send("hello")
-
-})
-
-
-
+app.get("/api/users", (req, res) => {
+  console.log("API User endpoint hit!");
+  res.json({ test: "working" });
+});
 
 app.use("/api/users", usersRoutes)
-
-
 
 async function start() {
   try {

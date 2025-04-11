@@ -15,7 +15,7 @@
     <style>
         :root {
             --primary: rgb(118, 185, 16);;
-            --primary-dark: #2d391c;
+            --primary-dark: #d6ecb8;
             --primary-light: #d5f5e3;
             --secondary: #2f724b;
             --light: #f8f9fa;
@@ -28,7 +28,7 @@
             --success: #2ecc71;
             --info: #8ceb89;
             --border-radius: 4px;
-            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --box-shadow: 0 4px 12px rgba(164, 227, 77, 0.08);
             --transition: all 0.3s ease;
         }
 
@@ -615,6 +615,22 @@
             }
         }
     </style>
+    <style>
+        .hidden { display: none; }
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #09f;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 
 
 <!-- General CSS Files -->
@@ -628,297 +644,91 @@
 <link rel="stylesheet" href="assets/css/components.min.css">
 </head>
 
-<body class="layout-4">
-<!-- Page Loader -->
-<div class="page-loader-wrapper">
-    <span class="loader"><span class="loader-inner"></span></span>
-</div>
+<body>
+    <!-- Navbar (same as before) -->
+    <nav class="navbar navbar-expand-lg main-navbar">
+        <!-- ... keep your existing navbar code ... -->
+    </nav>
 
-<div id="app">
-    <div class="main-wrapper main-wrapper-1">
-        <div class="navbar-bg"></div>
+    <!-- Sidebar (same as before) -->
+    <div class="main-sidebar sidebar-style-2">
+        <!-- ... keep your existing sidebar code ... -->
+    </div>
 
-        <!-- Start app top navbar -->
-        <nav class="navbar navbar-expand-lg main-navbar">
-            <form class="form-inline mr-auto">
-                <ul class="navbar-nav mr-3">
-                    <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-                    <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
-                </ul>
-                <div class="search-element">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250">
-                    <button class="btn" type="submit"><i class="fas fa-search"></i></button>
-                    <div class="search-backdrop"></div>
-                    <div class="search-result">
-                        <div class="search-header">Histories</div>
-                        <div class="search-item">
-                            <a href="#">How to Used HTML in Laravel</a>
-                            <a href="#" class="search-close"><i class="fas fa-times"></i></a>
-                        </div>
-                        <div class="search-item">
-                            <a href="https://themeforest.net/user/admincraft/portfolio" target="_black">Admincraft Portfolio</a>
-                            <a href="#" class="search-close"><i class="fas fa-times"></i></a>
-                        </div>
-                        <div class="search-item">
-                            <a href="#">#Kuriftu HUB</a>
-                            <a href="#" class="search-close"><i class="fas fa-times"></i></a>
-                        </div>
-                        <div class="search-header">Result</div>
-                        <div class="search-item">
-                            <a href="#">
-                                <img class="mr-3 rounded" width="30" src="assets/img/products/product-3-50.png" alt="product">
-                                oPhone 11 Pro
-                            </a>
-                        </div>
-                        <div class="search-item">
-                            <a href="#">
-                                <img class="mr-3 rounded" width="30" src="assets/img/products/product-2-50.png" alt="product">
-                                Drone Zx New Gen-3
-                            </a>
-                        </div>
-                        <div class="search-item">
-                            <a href="#">
-                                <img class="mr-3 rounded" width="30" src="assets/img/products/product-1-50.png" alt="product">
-                                Headphone JBL
-                            </a>
-                        </div>
-                        <div class="search-header">Projects</div>
-                        <div class="search-item">
-                            <a href="https://themeforest.net/item/epice-laravel-admin-template-for-hr-project-management/24466729" target="_black">
-                                <div class="search-icon bg-danger text-white mr-3"><i class="fas fa-code"></i></div>
-                                Epice Laravel - Admin Template
-                            </a>
-                        </div>
-                        <div class="search-item">
-                            <a href="https://themeforest.net/item/soccer-project-management-admin-template-ui-kit/24646866" target="_black">
-                                <div class="search-icon bg-primary text-white mr-3"><i class="fas fa-laptop"></i></div>
-                                Soccer - Admin Template
-                            </a>
-                        </div>
-                    </div>
+    <!-- Main Content -->
+    <div class="main-content" style="color:black">
+        <section class="section">
+            <div class="section-header">
+                <h1>Profile</h1>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+                    <div class="breadcrumb-item">Profile</div>
                 </div>
-            </form>
-            <ul class="navbar-nav navbar-right">
-                <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
-                    <div class="dropdown-menu dropdown-list dropdown-menu-right">
-                    <div class="dropdown-header">Messages
-                        <div class="float-right">
-                            <a href="#">Mark All As Read</a>
-                        </div>
-                    </div>
-                    <div class="dropdown-list-content dropdown-list-message">
-                        <a href="#" class="dropdown-item dropdown-item-unread">
-                            <div class="dropdown-item-avatar">
-                                <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle">
-                                <div class="is-online"></div>
-                            </div>
-                            <div class="dropdown-item-desc">
-                                <b>Kusnaedi</b>
-                                <p>Hello, Bro!</p>
-                                <div class="time">10 Hours Ago</div>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-item dropdown-item-unread">
-                            <div class="dropdown-item-avatar">
-                                <img alt="image" src="assets/img/avatar/avatar-2.png" class="rounded-circle">
-                            </div>
-                            <div class="dropdown-item-desc">
-                                <b>Dedik Sugiharto</b>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                                <div class="time">12 Hours Ago</div>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-item dropdown-item-unread">
-                            <div class="dropdown-item-avatar">
-                                <img alt="image" src="assets/img/avatar/avatar-3.png" class="rounded-circle">
-                                <div class="is-online"></div>
-                            </div>
-                            <div class="dropdown-item-desc">
-                                <b>Agung Ardiansyah</b>
-                                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                <div class="time">12 Hours Ago</div>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-item">
-                            <div class="dropdown-item-avatar">
-                                <img alt="image" src="assets/img/avatar/avatar-4.png" class="rounded-circle">
-                            </div>
-                            <div class="dropdown-item-desc">
-                                <b>Ardian Rahardiansyah</b>
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit ess</p>
-                                <div class="time">16 Hours Ago</div>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-item">
-                            <div class="dropdown-item-avatar">
-                                <img alt="image" src="assets/img/avatar/avatar-5.png" class="rounded-circle">
-                            </div>
-                            <div class="dropdown-item-desc">
-                                <b>Alfa Zulkarnain</b>
-                                <p>Exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-                                <div class="time">Yesterday</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="dropdown-footer text-center">
-                        <a href="#">View All <i class="fas fa-chevron-right"></i></a>
-                    </div>
-                    </div>
-                </li>
-                <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
-                    <div class="dropdown-menu dropdown-list dropdown-menu-right">
-                    <div class="dropdown-header">Notifications
-                        <div class="float-right">
-                            <a href="#">Mark All As Read</a>
-                        </div>
-                    </div>
-                    <div class="dropdown-list-content dropdown-list-icons">
-                        <a href="#" class="dropdown-item dropdown-item-unread">
-                            <div class="dropdown-item-icon bg-primary text-white">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <div class="dropdown-item-desc"> Template update is available now!
-                                <div class="time text-primary">2 Min Ago</div>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-item">
-                            <div class="dropdown-item-icon bg-info text-white">
-                                <i class="far fa-user"></i>
-                            </div>
-                            <div class="dropdown-item-desc">
-                                <b>You</b> and <b>Dedik Sugiharto</b> are now friends
-                                <div class="time">10 Hours Ago</div>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-item">
-                            <div class="dropdown-item-icon bg-success text-white">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="dropdown-item-desc">
-                                <b>Kusnaedi</b> has moved task <b>Fix bug header</b> to <b>Done</b>
-                                <div class="time">12 Hours Ago</div>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-item">
-                            <div class="dropdown-item-icon bg-danger text-white">
-                                <i class="fas fa-exclamation-triangle"></i>
-                            </div>
-                            <div class="dropdown-item-desc">
-                                Low disk space. Let's clean it!
-                                <div class="time">17 Hours Ago</div>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-item">
-                            <div class="dropdown-item-icon bg-info text-white">
-                                <i class="fas fa-bell"></i>
-                            </div>
-                            <div class="dropdown-item-desc">
-                                Welcome to CodiePie template!
-                                <div class="time">Yesterday</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="dropdown-footer text-center">
-                        <a href="#">View All <i class="fas fa-chevron-right"></i></a>
-                    </div>
-                    </div>
-                </li>
-                <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                    <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-                    <div class="d-sm-none d-lg-inline-block">Hi, Abebe Zewdu</div></a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <div class="dropdown-title">Logged in 5 min ago</div>
-                        <a href="features-profile.html" class="dropdown-item has-icon"><i class="far fa-user"></i> Profile</a>
-                        <a href="features-activities.html" class="dropdown-item has-icon"><i class="fas fa-bolt"></i> Activities</a>
-                        <a href="features-settings.html" class="dropdown-item has-icon"><i class="fas fa-cog"></i> Settings</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item has-icon text-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-
-        <!-- Start main left sidebar menu -->
-        <div class="main-sidebar sidebar-style-2">
-            <aside id="sidebar-wrapper">
-                <div class="sidebar-brand">
-                    <a href="index-2.html">Kuriftu HUB</a>
-                </div>
-                <div class="sidebar-brand sidebar-brand-sm">
-                    <a href="index-2.html">CP</a>
-                </div>
-                <ul class="sidebar-menu">
-                    <li class="menu-header">Home</li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="nav-link" href="index-0.html">Courses</a></li>
-                            
-                        </ul>
-                    </li>
-                    
-                    <li class="dropdown">
-                        <a href="feedback.html" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i> <span>Feedback</span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="utilities-contact.html">Contact</a></li>
-                            
-                        </ul>
-                    </li>
-                    <li><a class="nav-link" href="credits.html"><i class="fas fa-pencil-ruler"></i> <span>Support</span></a></li>
-                </ul>
+            </div>
+            
+            <div class="section-body">
+                <!-- Loading State -->
+                <div id="loading-spinner" class="loading-spinner"></div>
                 
-            </aside>
-        </div>
-
-        <!-- Start app main Content -->
-          <!-- Start app main Content -->
-        <div class="main-content" style="color:black">
-            <section class="section">
-                <div class="section-header">
-                    <h1>Profile</h1>
-                    <div class="section-header-breadcrumb">
-                        <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                        <div class="breadcrumb-item">Profile</div>
-                    </div>
+                <!-- Error Message -->
+                <div id="error-message" class="alert alert-danger hidden">
+                    <button class="close" data-dismiss="alert">
+                        <span>&times;</span>
+                    </button>
+                    <span id="error-text"></span>
                 </div>
-                <div class="section-body">
-                    <h2 class="section-title">Hi, Michelle!</h2>
+                
+                <!-- Success Message -->
+                <div id="success-message" class="alert alert-success hidden">
+                    <button class="close" data-dismiss="alert">
+                        <span>&times;</span>
+                    </button>
+                    <span id="success-text"></span>
+                </div>
+
+                <!-- Profile Content (will be populated by JavaScript) -->
+                <div id="profile-content" class="hidden">
+                    <h2 class="section-title" id="welcome-message">Hi, <span id="username"></span>!</h2>
                     <p class="section-lead">Change information about yourself on this page.</p>
 
                     <div class="row mt-sm-4" style="margin-top:3% ;">
                         <div class="col-12 col-md-12 col-lg-5">
                             <div class="card profile-widget">
                                 <div class="profile-widget-header" style="padding-top:30px ;">                     
-                                    <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle profile-widget-picture">
+                                    <img alt="Profile Picture" id="profile-picture" class="rounded-circle profile-widget-picture">
                                     <div class="profile-widget-items">
                                         <div class="profile-widget-item">
                                             <div class="profile-widget-item-label">Courses</div>
-                                            <div class="profile-widget-item-value">187</div>
+                                            <div class="profile-widget-item-value" id="courses-count">0</div>
                                         </div>
                                         <div class="profile-widget-item">
                                             <div class="profile-widget-item-label">Hours spent</div>
-                                            <div class="profile-widget-item-value">6,8K</div>
+                                            <div class="profile-widget-item-value" id="hours-spent">0</div>
                                         </div>
-                                       
                                     </div>
                                 </div>
                                 <div class="profile-widget-description">
-                                    <div class="profile-widget-name">Abel Zewdu<div class="text-muted d-inline font-weight-normal"><div class="slash"></div> Web Developer</div></div>
-                                    Michelle Green is a superhero name in <b>USA</b>, especially in my family. He is not a fictional character but an original hero in my family, a hero for his children and for his wife. So, I use the name as a user in this template. Not a tribute, I'm just bored with <b>'John Doe'</b>.
+                                    <div class="profile-widget-name" id="full-name">
+                                        <span id="display-name"></span>
+                                        <div class="text-muted d-inline font-weight-normal">
+                                            <div class="slash"></div> 
+                                            <span id="user-role">Member</span>
+                                        </div>
+                                    </div>
+                                    <p id="user-bio">No bio provided yet.</p>
                                 </div>
                                 <div class="card-footer text-center">
                                     <div class="font-weight-bold mb-2">Contacts</div>
-                                    <a href="#" class="btn btn-social-icon btn-facebook mr-1"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#" class="btn btn-social-icon btn-twitter mr-1"><i class="fab fa-twitter"></i></a>
-                                    <a href="#" class="btn btn-social-icon btn-github mr-1"><i class="fab fa-github"></i></a>
-                                    <a href="#" class="btn btn-social-icon btn-instagram"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" id="facebook-link" class="btn btn-social-icon btn-facebook mr-1"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" id="twitter-link" class="btn btn-social-icon btn-twitter mr-1"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" id="github-link" class="btn btn-social-icon btn-github mr-1"><i class="fab fa-github"></i></a>
+                                    <a href="#" id="instagram-link" class="btn btn-social-icon btn-instagram"><i class="fab fa-instagram"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-12 col-lg-7">
                             <div class="card">
-                                <form method="post" class="needs-validation" novalidate="">
+                                <form id="profile-form" class="needs-validation" novalidate="" enctype="multipart/form-data">
                                     <div class="card-header">
                                         <h4>Edit Profile</h4>
                                     </div>
@@ -926,111 +736,233 @@
                                         <div class="row">
                                             <div class="form-group col-md-6 col-12">
                                                 <label>First Name</label>
-                                                <input type="text" class="form-control" value="Michelle" required="">
+                                                <input type="text" id="first-name" name="first_name" class="form-control" required>
                                                 <div class="invalid-feedback">Please fill in the first name</div>
                                             </div>
                                             <div class="form-group col-md-6 col-12">
                                                 <label>Last Name</label>
-                                                <input type="text" class="form-control" value="Green" required="">
+                                                <input type="text" id="last-name" name="last_name" class="form-control" required>
                                                 <div class="invalid-feedback">Please fill in the last name</div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-7 col-12">
                                                 <label>Email</label>
-                                                <input type="email" class="form-control" value="Michelle@Green.com" required="">
-                                                <div class="invalid-feedback">Please fill in the email</div>
+                                                <input type="email" id="email" name="email" class="form-control" required>
+                                                <div class="invalid-feedback">Please fill in a valid email</div>
                                             </div>
                                             <div class="form-group col-md-5 col-12">
                                                 <label>Phone</label>
-                                                <input type="tel" class="form-control" value="">
+                                                <input type="tel" id="phone" name="phone" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Profile Picture</label>
+                                            <div class="custom-file">
+                                                <input type="file" id="avatar" name="avatar" class="custom-file-input">
+                                                <label class="custom-file-label" for="avatar">Choose file</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-12">
                                                 <label>Bio</label>
-                                                <textarea class="form-control summernote-simple">Michelle Green is a superhero name in <b>USA</b>, especially in my family. He is not a fictional character but an original hero in my family, a hero for his children and for his wife. So, I use the name as a user in this template. Not a tribute, I'm just bored with <b>'John Doe'</b>.</textarea>
+                                                <textarea id="bio" name="bio" class="form-control summernote-simple"></textarea>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="form-group mb-0 col-12">
-                                                <div class="custom-control custom-checkbox">
-                                                   
-                                                    <div class="text-muted form-text">You will get new information about products, offers and promotions</div>
-                                                </div>
+                                            <div class="form-group col-md-6 col-12">
+                                                <label>Facebook URL</label>
+                                                <input type="url" id="facebook-url" name="facebook_url" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-6 col-12">
+                                                <label>Twitter URL</label>
+                                                <input type="url" id="twitter-url" name="twitter_url" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-6 col-12">
+                                                <label>GitHub URL</label>
+                                                <input type="url" id="github-url" name="github_url" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-6 col-12">
+                                                <label>Instagram URL</label>
+                                                <input type="url" id="instagram-url" name="instagram_url" class="form-control">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card-footer text-right">
-                                        <button class="btn btn-primary">Save Changes</button>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
+    </div>
 
-
-    <script>
-        // Simple script to handle dropdown menus
+    <!-- JavaScript -->
+   <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const dropdownToggles = document.querySelectorAll('.menu-item.has-dropdown');
+            // DOM Elements
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+            const profileContent = document.getElementById('profile-content');
+            const profileForm = document.getElementById('profile-form');
             
-            dropdownToggles.forEach(toggle => {
-                toggle.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const dropdownMenu = this.nextElementSibling;
-                    dropdownMenu.classList.toggle('show');
-                });
-            });
-            
-            // Follow button toggle functionality
-            const followButtons = document.querySelectorAll('.follow-btn, .following-btn');
-            
-            followButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    if (this.classList.contains('btn-primary')) {
-                        this.classList.remove('btn-primary');
-                        this.classList.add('btn-danger');
-                        this.textContent = 'Following';
-                    } else {
-                        this.classList.remove('btn-danger');
-                        this.classList.add('btn-primary');
-                        this.textContent = 'Follow';
+            // Get JWT token from storage (adjust based on your auth system)
+            function getToken() {
+                return localStorage.getItem('token') || '';
+            }
+    
+            // Fetch user data
+            async function fetchUserData() {
+                try {
+                    loadingSpinner.style.display = 'block';
+                    profileContent.classList.add('hidden');
+                    errorMessage.classList.add('hidden');
+                    
+                    const response = await fetch('/api/users', {
+                        headers: {
+                            'Authorization': `Bearer ${getToken()}`
+                        }
+                    });
+                    
+                    // Check if response is HTML (error page)
+                    const contentType = response.headers.get('content-type');
+                    if (contentType && contentType.includes('text/html')) {
+                        const html = await response.text();
+                        throw new Error('Server returned HTML instead of JSON');
                     }
-                });
+                    
+                    if (!response.ok) {
+                        const errorData = await response.json().catch(() => ({}));
+                        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+                    }
+                    
+                    const users = await response.json();
+                    // Assuming first user is the current user (adjust as needed)
+                    if (users.length > 0) {
+                        populateProfile(users[0]);
+                    } else {
+                        throw new Error('No user data found');
+                    }
+                    
+                    loadingSpinner.style.display = 'none';
+                    profileContent.classList.remove('hidden');
+                    
+                } catch (error) {
+                    console.error('Error fetching user data:', error);
+                    loadingSpinner.style.display = 'none';
+                    showError(error.message);
+                    
+                    // Redirect to login if unauthorized
+                    if (error.message.includes('401')) {
+                        window.location.href = '../authLogin/auth-register.html';
+                    }
+                }
+            }
+            
+            // Populate profile with data
+            function populateProfile(user) {
+                // Basic info
+                document.getElementById('username').textContent = user.username || 'User';
+                document.getElementById('display-name').textContent = user.full_name || '';
+                document.getElementById('full-name').textContent = user.full_name || '';
+                document.getElementById('email').value = user.email || '';
+                document.getElementById('user-bio').textContent = user.description || 'No bio provided yet.';
+                
+                // Profile picture
+                const profilePic = document.getElementById('profile-picture');
+                if (user.image) {
+                    profilePic.src = user.image;
+                    profilePic.alt = `${user.full_name}'s profile picture`;
+                } else {
+                    profilePic.src = 'assets/img/avatar/default-avatar.png';
+                }
+                
+                // Form fields
+                // Split full_name into first and last names if needed
+                const names = user.full_name ? user.full_name.split(' ') : ['', ''];
+                document.getElementById('first-name').value = names[0] || '';
+                document.getElementById('last-name').value = names.slice(1).join(' ') || '';
+                document.getElementById('phone').value = user.phone || '';
+                document.getElementById('bio').value = user.description || '';
+                
+                // Stats (if available)
+                document.getElementById('courses-count').textContent = user.courses_count || 0;
+                document.getElementById('hours-spent').textContent = user.hours_spent || 0;
+            }
+            
+            // Show error message
+            function showError(message) {
+                document.getElementById('error-text').textContent = message;
+                errorMessage.classList.remove('hidden');
+            }
+            
+            // Show success message
+            function showSuccess(message) {
+                document.getElementById('success-text').textContent = message;
+                successMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    successMessage.classList.add('hidden');
+                }, 5000);
+            }
+            
+            // Handle form submission
+            profileForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                if (!profileForm.checkValidity()) {
+                    e.stopPropagation();
+                    profileForm.classList.add('was-validated');
+                    return;
+                }
+                
+                try {
+                    const formData = {
+                        full_name: `${document.getElementById('first-name').value} ${document.getElementById('last-name').value}`,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        description: document.getElementById('bio').value
+                    };
+                    
+                    const response = await fetch('/api/users/update', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${getToken()}`
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.message || 'Failed to update profile');
+                    }
+                    
+                    const updatedUser = await response.json();
+                    populateProfile(updatedUser);
+                    showSuccess('Profile updated successfully!');
+                    
+                } catch (error) {
+                    console.error('Error updating profile:', error);
+                    showError(error.message);
+                }
             });
+            
+            // Initialize file input label
+            document.getElementById('avatar').addEventListener('change', function(e) {
+                const fileName = e.target.files[0] ? e.target.files[0].name : 'Choose file';
+                document.querySelector('.custom-file-label').textContent = fileName;
+            });
+            
+            // Initial fetch
+            fetchUserData();
         });
     </script>
+ </body>
 
-
-      
-
-            </section>
-            
-        </div>
-
-        <!-- Start app Footer part -->
-       
-    </div>
-</div>
-
-
-      
-<!-- General JS Scripts -->
-<script src="assets/bundles/lib.vendor.bundle.js"></script>
-<script src="js/CodiePie.js"></script>
-
-<!-- JS Libraies -->
-
-<!-- Page Specific JS File -->
-
-<!-- Template JS File -->
-<script src="js/scripts.js"></script>
-<script src="js/custom.js"></script>
-</body>
-
-<!-- components-article.html  Tue, 07 Jan 2020 03:36:58 GMT -->
 </html>
