@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resort Training Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                  url('./assets/img/Screenshot\ 2025-04-11\ 003813.png') center/cover no-repeat;
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+    .course-highlight i {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #198754;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar (Login & Sign Up only) -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="./assets/img/logo.svg" alt="Resort Logo" height="40"/>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-outline-success ms-2" href="signup.html">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to the Resort Training Hub 🏝</h1>
+    <p class="lead">Empowering our team with knowledge, confidence, and hospitality excellence.</p>
+    <a href="signup.html" class="btn btn-success btn-lg mt-3">Get Started</a>
+  </section>
+
+  <!-- Highlights Section -->
+  <section class="container text-center py-5">
+    <div class="row g-4">
+      <div class="col-md-4 course-highlight">
+        <i class="bi bi-chat-heart"></i>
+        <h5>Guest Interaction</h5>
+        <p>Master the art of communication and guest satisfaction.</p>
+      </div>
+      <div class="col-md-4 course-highlight">
+        <i class="bi bi-recycle"></i>
+        <h5>Eco-Friendly Operations</h5>
+        <p>Implement green practices and sustainable habits on-site.</p>
+      </div>
+      <div class="col-md-4 course-highlight">
+        <i class="bi bi-shield-check"></i>
+        <h5>Health & Safety</h5>
+        <p>Keep guests and staff safe with proper protocols and awareness.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white border-top py-3 text-center">
+    <p class="mb-0 text-muted">© 2025 Resort Training Hub. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
